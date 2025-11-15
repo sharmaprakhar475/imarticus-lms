@@ -12,12 +12,12 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/courses", require("./routes/courseRoutes"));
 app.use("/api/payment", require("./routes/payment"));
 
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.get(/.*/, (req, res) => {
   // prevent handling API routes
   if (req.originalUrl.startsWith("/api")) return;
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
 app.listen(PORT, () => console.log("Server running on port 5000"));
