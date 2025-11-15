@@ -10,8 +10,7 @@ export default function Signup() {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const BACKEND_API_URL =
-    process.env.BACKEND_API_URL || "http://localhost:5000/api";
+  const BACKEND_API_URL = "https://imarticus-lms-backend-z90i.onrender.com/api";
   const validate = () => {
     const newErrors = {};
 

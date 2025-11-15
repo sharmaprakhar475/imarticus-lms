@@ -6,8 +6,7 @@ import axios from "axios";
 export default function LecturePage() {
   const { courseId, chapterIndex, lectureIndex } = useParams();
   const navigate = useNavigate();
-  const BACKEND_API_URL =
-    process.env.BACKEND_API_URL || "http://localhost:5000/api";
+  const BACKEND_API_URL = "https://imarticus-lms-backend-z90i.onrender.com/api";
   const [courseName, setCourseName] = useState("");
   const [chapterName, setChapterName] = useState("");
   const [lecture, setLecture] = useState(null);

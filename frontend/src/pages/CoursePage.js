@@ -8,8 +8,7 @@ export default function CoursePage() {
   const navigate = useNavigate();
   const [course, setCourse] = useState(null);
   const [expandedChapterIndex, setExpandedChapterIndex] = useState(null);
-  const BACKEND_API_URL =
-    process.env.BACKEND_API_URL || "http://localhost:5000/api";
+  const BACKEND_API_URL = "https://imarticus-lms-backend-z90i.onrender.com/api";
   useEffect(() => {
     async function fetchCourse() {
       try {
