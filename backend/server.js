@@ -14,11 +14,10 @@ app.use("/api/payment", require("./routes/payment"));
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-app.get("*", (req, res) => {
-  // If the route is NOT an API route → serve React
-  if (!req.url.startsWith("/api")) {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-  }
+app.get("/*", (req, res) => {
+  // prevent catching API
+  if (req.url.startsWith("/api")) return;
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
 app.listen(PORT, () => console.log("Server running on port 5000"));
