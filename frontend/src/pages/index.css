@@ -1,0 +1,57 @@
+.hero-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero-title {
+  color: #0f5644; /* Dark green */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+  color: #3c3c3c;
+  font-size: 1.25rem;
+}
+
+.hero-apply-btn {
+  transition: background-color 0.3s ease;
+}
+
+.hero-apply-btn:hover {
+  background-color: #e65500;
+  border-color: #e65500;
+}
+
+.hero-brochure-btn {
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-brochure-btn:hover {
+  color: #ff6600;
+  border-color: #ff6600;
+}
+
+.highlights-section {
+  background-color: #f9fafb;
+}
+
+.highlight-number {
+  font-size: 3.5rem; /* Bigger numbers */
+  font-weight: 700;
+  color: #0f5644; /* Dark green */
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #555;
+  letter-spacing: 1px;
+}
