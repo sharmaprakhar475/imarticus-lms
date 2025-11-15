@@ -14,9 +14,9 @@ app.use("/api/payment", require("./routes/payment"));
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-app.get("/*", (req, res) => {
-  // prevent catching API
-  if (req.url.startsWith("/api")) return;
+app.get(/.*/, (req, res) => {
+  // prevent handling API routes
+  if (req.originalUrl.startsWith("/api")) return;
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
