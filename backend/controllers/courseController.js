@@ -41,14 +41,11 @@ exports.getCourses = async (req, res) => {
 exports.assignCourse = async (req, res) => {
   const userId = req.params.id; // from URL
   const { courseId } = req.body; // courseId sent in request body
-
   try {
-    // Add courseId to user's courses array if not already present
     await User.updateOne({ _id: userId }, { $addToSet: { courses: courseId } });
-
     res.status(200).json({ message: "Course assigned successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Failed to assign course" });
+    res.status(500).json({ error: error.message });
   }
 };
 

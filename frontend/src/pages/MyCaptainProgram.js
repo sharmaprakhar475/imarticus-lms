@@ -21,8 +21,12 @@ export default function MyCaptainProgram() {
             href="#home"
             className="d-flex align-items-center gap-2"
           >
-            <HouseFill size={24} />
-            MyCaptain Program
+            <img
+              src="/imarticus-logo.png"
+              alt="Company Logo"
+              className="logo"
+              style={{ width: "100%", height: "60px" }}
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

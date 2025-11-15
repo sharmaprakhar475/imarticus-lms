@@ -10,7 +10,6 @@ app.use(cors());
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/courses", require("./routes/courseRoutes"));
-app.use("/api/payment", require("./routes/payment"));
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 

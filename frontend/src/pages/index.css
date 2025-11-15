@@ -55,3 +55,90 @@
   color: #555;
   letter-spacing: 1px;
 }
+
+.course-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e6e9ec;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.course-row:hover {
+  background: #f7fafa;
+}
+
+.course-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* TAGS (Rounded Like Screenshot) */
+.course-tags {
+  display: flex;
+  gap: 12px;
+}
+
+.tag {
+  padding: 6px 14px;
+  border-radius: 25px;
+  background: #f4fafb;
+  color: #1d2730;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ARROW */
+.arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  color: #333;
+}
+
+.arrow.rotate {
+  transform: rotate(90deg);
+}
+
+/* EXPANDED CONTENT */
+.expand-section {
+  padding: 15px 20px;
+  background: #fafcfd;
+  animation: slideDown 0.3s ease;
+}
+
+.chapter-box {
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 4px solid #0056d6;
+}
+
+.chapter-box ul {
+  margin-left: 20px;
+  margin-top: 6px;
+}
+
+.chapter-box li {
+  padding: 4px 0;
+  font-size: 14px;
+}
+
+/* Smooth animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

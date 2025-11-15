@@ -10,7 +10,7 @@ const {
 
 router.get("/", getAllCourses);
 router.get("/get-courses/:id", getCourses);
-router.post("/assign-course/:id", assignCourse);
+router.put("/assign-course/:id", assignCourse);
 router.get("/:courseId", courseDetails);
 router.post("/summarize", summarizeDoc);
 module.exports = router;
