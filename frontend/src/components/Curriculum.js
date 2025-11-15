@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 export default function Curriculum() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openCourse, setOpenCourse] = useState(null);
 
+  const BACKEND_API_URL =
+    process.env.BACKEND_API_URL || "http://localhost:5000/api";
   const toggleCourse = (id) => {
     setOpenCourse(openCourse === id ? null : id);
   };
@@ -14,7 +15,7 @@ export default function Curriculum() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/courses");
+        const res = await axios.get(`${BACKEND_API_URL}/courses`);
         setCourses(res.data.courses || []);
       } catch (err) {
         setError("Failed to load courses.");
@@ -35,7 +36,7 @@ export default function Curriculum() {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/courses/assign-course/${userId}`,
+        `${BACKEND_API_URL}/courses/assign-course/${userId}`,
         {
           courseId: course._id,
         },

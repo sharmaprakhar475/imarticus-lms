@@ -10,7 +10,8 @@ export default function Signup() {
     password: "",
   });
   const [errors, setErrors] = useState({});
-
+  const BACKEND_API_URL =
+    process.env.BACKEND_API_URL || "http://localhost:5000/api";
   const validate = () => {
     const newErrors = {};
 
@@ -47,7 +48,7 @@ export default function Signup() {
     if (!validate()) return; // stop if validation fails
 
     try {
-      await axios.post("http://localhost:5000/api/auth/signup", data);
+      await axios.post(`${BACKEND_API_URL}/auth/signup`, data);
       alert("Signup complete! Now login");
       window.location.href = "/login";
     } catch (error) {

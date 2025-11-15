@@ -8,13 +8,12 @@ export default function CoursePage() {
   const navigate = useNavigate();
   const [course, setCourse] = useState(null);
   const [expandedChapterIndex, setExpandedChapterIndex] = useState(null);
-
+  const BACKEND_API_URL =
+    process.env.BACKEND_API_URL || "http://localhost:5000/api";
   useEffect(() => {
     async function fetchCourse() {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/courses/${courseId}`
-        );
+        const res = await axios.get(`${BACKEND_API_URL}/courses/${courseId}`);
         setCourse(res.data.course);
       } catch (err) {
         console.error("Failed to fetch course", err);

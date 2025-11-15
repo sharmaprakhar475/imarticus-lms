@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
   const [courses, setCourses] = useState([]);
   const [userId, setUserId] = useState(null);
+  const BACKEND_API_URL =
+    process.env.BACKEND_API_URL || "http://localhost:5000/api";
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -17,7 +19,7 @@ export default function Dashboard() {
     const fetchCourses = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/courses/get-courses/${userId}`
+          `${BACKEND_API_URL}/courses/get-courses/${userId}`
         );
         setCourses(res.data.courses || []);
       } catch (error) {

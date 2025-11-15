@@ -6,21 +6,21 @@ import axios from "axios";
 export default function LecturePage() {
   const { courseId, chapterIndex, lectureIndex } = useParams();
   const navigate = useNavigate();
-
+  const BACKEND_API_URL =
+    process.env.BACKEND_API_URL || "http://localhost:5000/api";
   const [courseName, setCourseName] = useState("");
   const [chapterName, setChapterName] = useState("");
   const [lecture, setLecture] = useState(null);
   const [showPdf, setShowPdf] = useState(false);
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
-
   const togglePdf = () => setShowPdf(!showPdf);
 
   const summarizeDoc = async () => {
     setLoading(true);
     setSummary("");
     try {
-      const res = await axios.post("http://localhost:5000/api/summarize", {
+      const res = await axios.post(`${BACKEND_API_URL}/summarize`, {
         pdfUrl: lecture.pdfLink,
       });
       setSummary(res.data.summary);
@@ -34,9 +34,7 @@ export default function LecturePage() {
   useEffect(() => {
     async function fetchLecture() {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/courses/${courseId}`
-        );
+        const res = await axios.get(`${BACKEND_API_URL}/courses/${courseId}`);
         const course = res.data.course;
         setCourseName(course.name);
 

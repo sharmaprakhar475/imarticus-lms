@@ -5,6 +5,8 @@ import "./Login.css";
 export default function Login() {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const BACKEND_API_URL =
+    process.env.BACKEND_API_URL || "http://localhost:5000/api";
   const validate = () => {
     const newErrors = {};
 
@@ -27,10 +29,7 @@ export default function Login() {
   const login = async () => {
     if (!validate()) return;
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        data
-      );
+      const res = await axios.post(`${BACKEND_API_URL}/auth/login`, data);
 
       if (res.data.token && res.data.userId) {
         localStorage.setItem("token", res.data.token);
