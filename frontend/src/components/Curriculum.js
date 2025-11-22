@@ -7,6 +7,7 @@ export default function Curriculum() {
   const [openCourse, setOpenCourse] = useState(null);
 
   const BACKEND_API_URL = "https://imarticus-lms-backend-z90i.onrender.com/api";
+  // const BACKEND_API_URL = "http://localhost:5000/api";
   const toggleCourse = (id) => {
     setOpenCourse(openCourse === id ? null : id);
   };

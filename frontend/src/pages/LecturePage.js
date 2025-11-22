@@ -7,6 +7,7 @@ export default function LecturePage() {
   const { courseId, chapterIndex, lectureIndex } = useParams();
   const navigate = useNavigate();
   const BACKEND_API_URL = "https://imarticus-lms-backend-z90i.onrender.com/api";
+  // const BACKEND_API_URL = "http://localhost:5000/api";
   const [courseName, setCourseName] = useState("");
   const [chapterName, setChapterName] = useState("");
   const [lecture, setLecture] = useState(null);
@@ -19,7 +20,7 @@ export default function LecturePage() {
     setLoading(true);
     setSummary("");
     try {
-      const res = await axios.post(`${BACKEND_API_URL}/summarize`, {
+      const res = await axios.post(`${BACKEND_API_URL}/courses/summarize`, {
         pdfUrl: lecture.pdfLink,
       });
       setSummary(res.data.summary);

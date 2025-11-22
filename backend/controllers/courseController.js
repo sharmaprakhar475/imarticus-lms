@@ -1,10 +1,12 @@
 const User = require("../models/User");
 const Course = require("../models/Course");
-require("dotenv").config();
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+// const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const openaiUrl = "https://api.openai.com/v1/chat/completions";
-const pdfParse = require("pdf-parse");
 const axios = require("axios");
+// const pdf = require("pdf-parse");
+const pdf = require("pdf-extraction");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const genAI = new GoogleGenerativeAI("AIzaSyBGwR4CqLi3RLKnEg9ev6nGvvN56VylwgM");
 
 exports.getAllCourses = async (req, res) => {
   try {
@@ -66,42 +68,20 @@ exports.summarizeDoc = async (req, res) => {
   if (!pdfUrl) return res.status(400).json({ error: "Missing pdfUrl" });
 
   try {
-    const pdfResponse = await axios.get(pdfUrl, {
-      responseType: "arraybuffer",
-    });
-    const pdfBuffer = Buffer.from(pdfResponse.data, "binary");
-    const data = await pdfParse(pdfBuffer);
-    console.log("Extracted text length:", data.text.length);
-    const text = data.text;
+    const response = await axios.get(pdfUrl, { responseType: "arraybuffer" });
+    const dataBuffer = Buffer.from(response.data);
+    const pdfData = await pdf(dataBuffer);
+    const text = pdfData.text;
 
-    const messages = [
-      { role: "system", content: "You are a helpful assistant." },
-      {
-        role: "user",
-        content: `Summarize the following text briefly:\n\n${text.substring(
-          0,
-          2000
-        )}`,
-      },
-    ];
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
+    const prompt = `Summarize the following text briefly:\n\n${text.substring(
+      0,
+      10000
+    )}`;
 
-    const openaiResponse = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        model: "gpt-4",
-        messages,
-        temperature: 0.5,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${OPENAI_API_KEY}`,
-        },
-      }
-    );
+    const result = await model.generateContent(prompt);
+    const summary = result.response.text();
 
-    const summary = openaiResponse.data.choices[0].message.content;
-    console.log("Generated summary:", summary);
     res.json({ summary });
   } catch (error) {
     console.error(error);

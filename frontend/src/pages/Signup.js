@@ -11,6 +11,7 @@ export default function Signup() {
   });
   const [errors, setErrors] = useState({});
   const BACKEND_API_URL = "https://imarticus-lms-backend-z90i.onrender.com/api";
+  // const BACKEND_API_URL = "http://localhost:5000/api";
   const validate = () => {
     const newErrors = {};
 

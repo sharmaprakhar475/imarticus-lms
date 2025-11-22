@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
   const [courses, setCourses] = useState([]);
   const [userId, setUserId] = useState(null);
+  // const BACKEND_API_URL = "http://localhost:5000/api";
   const BACKEND_API_URL = "https://imarticus-lms-backend-z90i.onrender.com/api";
 
   useEffect(() => {
